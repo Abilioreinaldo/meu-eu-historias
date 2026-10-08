@@ -63,7 +63,20 @@ No passo de fotos do wizard:
 7. Dicas fixas: rosto de frente e nítido, só a criança, boa luz sem flash, sem óculos escuros ou boné.
 ```
 
-## 4 · Cupons em lote (B2B)
+## 4 · Adicionais do checkout
+
+```
+Implemente os adicionais (order bumps) como itens do pedido, cada um com seu job:
+1. Versão para colorir (R$ 9,90): converte as 14 ilustrações finais em line-art (modelo de imagem com prompt de "coloring page, clean black outlines, white background", usando a ilustração como referência) e monta um PDF A4 separado.
+2. Narração em áudio (R$ 9,90): TTS em PT-BR do texto do livro (provider abstrato; começar com voz local Kokoro ou equivalente), um MP3 por livro com pausas entre páginas. Entregar junto do PDF.
+3. Entrega prioritária (R$ 4,90): pedido entra na fila de alta prioridade (Horizon) e sai da Batch API, prometendo até 30 minutos.
+4. Impresso capa dura (R$ 129,90): gera PDF de gráfica (sangria 3mm, CMYK) e envia o pedido via API da gráfica parceira; rastreio por WhatsApp.
+5. Brinde: certificado "Pequeno Leitor" em PDF com nome da criança e a Lumi, gerado sempre.
+6. Garantia de 7 dias: botão de reembolso no painel admin + bot de WhatsApp.
+Proibido: cronômetros falsos, "vagas limitadas" ou selos de "mais vendido" sem dado real.
+```
+
+## 5 · Cupons em lote (B2B)
 
 ```
 Crie a venda de cupons em lote: empresa/escola compra N cupons, recebe links únicos (ou códigos para /resgatar). Quem resgata passa pelo wizard sem pagar. Painel do comprador mostra cupons usados e livros gerados.

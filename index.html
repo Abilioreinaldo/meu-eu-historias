@@ -123,11 +123,17 @@ textarea.input{height:auto;min-height:92px;padding:12px 14px;font-size:15px;line
   ];
   const TIPS = ['Rosto de frente e nítido', 'Só a criança na foto', 'Boa luz, sem flash', 'Sem óculos escuros ou boné'];
   const PRICE = { pix: 44.9, card: 49.9, print: 129.9 };
+  const EXTRAS = [
+    { id: 'color', label: 'Versão para colorir', desc: 'As 14 ilustrações em traço, para pintar e imprimir', price: 9.9, tag: 'Sugestão da Lumi' },
+    { id: 'audio', label: 'Narração em áudio', desc: 'A história lida em voz alta, com o nome da criança', price: 9.9 },
+    { id: 'fast', label: 'Entrega prioritária', desc: 'Seu livro fura a fila e chega em até 30 minutos', price: 4.9 },
+    { id: 'print', label: 'Livro impresso, capa dura', desc: 'Entregue em casa, além do PDF', price: 129.9 }
+  ];
 
   // ---------- Estado ----------
   const initial = () => ({ step: 0, age: null, cat: 'todos', theme: null, lesson: null, style: null, name: '', gender: null,
     personality: '', face: false, body: false, outfit: 'tema', consent: false, warn: true, copied: false,
-    cast: [], dedication: '', pay: 'pix', print: false, split: 50 });
+    cast: [], dedication: '', pay: 'pix', extras: [], split: 50 });
   let S = initial();
   const set = (patch) => { S = Object.assign({}, S, patch); render(); };
   let timer = null;
@@ -166,7 +172,7 @@ textarea.input{height:auto;min-height:92px;padding:12px 14px;font-size:15px;line
       default: return '';
     }
   }
-  const total = () => (S.pay === 'pix' ? PRICE.pix : PRICE.card) + (S.print ? PRICE.print : 0);
+  const total = () => (S.pay === 'pix' ? PRICE.pix : PRICE.card) + EXTRAS.filter((x) => S.extras.includes(x.id)).reduce((a, x) => a + x.price, 0);
   function ctaLabel() {
     if (S.step === 7) return 'Ver a capa grátis';
     if (S.step === 9) return 'Quero o livro completo';
@@ -212,6 +218,7 @@ textarea.input{height:auto;min-height:92px;padding:12px 14px;font-size:15px;line
         <div style="font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--coral-t)">Livro digital completo</div>
         <div style="font-family:var(--display);font-weight:800;font-size:44px;line-height:1">R$ 49,90</div>
         <div style="font-size:14px;color:var(--ink-2)">ou <strong>R$ 44,90 no Pix</strong></div>
+        <div style="font-size:13px;color:var(--ink-3);line-height:1.4;margin-top:4px">Com certificado de Pequeno Leitor de brinde · garantia de 7 dias</div>
         <button data-act="start" style="margin-top:10px;width:100%;height:52px;border:0;border-radius:16px;background:var(--navy);color:var(--cream);font-weight:800;font-size:16px;cursor:pointer">Começar agora</button>
       </section>
       <div style="padding:22px 20px 30px;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--ink-3);text-align:center">
@@ -358,16 +365,27 @@ textarea.input{height:auto;min-height:92px;padding:12px 14px;font-size:15px;line
           `<span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:800;font-size:16px">${l}</span><span class="opt-desc">${n}</span></span><span style="font-weight:800;font-size:16px">${brl(p)}</span>`,
           'display:flex;align-items:center;justify-content:space-between;min-height:60px;padding:10px 16px;border-radius:16px')).join('')}
       </div>
-      ${opt(S.print, 'print', `<span class="check">${ico.tick}</span><span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:800;font-size:15px">Quero também o livro impresso, capa dura</span><span class="opt-desc" style="font-size:13px">Entregue em casa · + ${brl(PRICE.print)}</span></span>`,
-        'display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:16px')}
+      <div class="field"><div class="label">Deixe ainda mais especial</div>
+        ${EXTRAS.map((x) => opt(S.extras.includes(x.id), 'extra:' + x.id, `<span class="check">${ico.tick}</span>
+          <span style="flex:1;display:flex;flex-direction:column;gap:2px">
+            <span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span style="font-weight:800;font-size:15px">${x.label}</span>${x.tag ? `<span style="padding:2px 8px;border-radius:10px;background:var(--star);font-size:11px;font-weight:800">${x.tag}</span>` : ''}</span>
+            <span class="opt-desc" style="font-size:13px">${x.desc}</span></span>
+          <span style="font-weight:800;font-size:14px;white-space:nowrap">+ ${brl(x.price)}</span>`,
+          'display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:16px')).join('')}
+      </div>
+      <div class="card" style="display:flex;gap:10px;align-items:center;background:#EEF6EC;border-color:#CFE6CA">
+        <span style="width:32px;height:32px;border-radius:16px;background:#DCEFD9;display:flex;align-items:center;justify-content:center;flex:none">${ico.tickG}</span>
+        <span style="font-size:13px;line-height:1.4;color:#1F4D26"><strong>Brinde:</strong> certificado de Pequeno Leitor com o nome de ${esc(d.who)}.</span>
+      </div>
       <div style="display:flex;justify-content:space-between;align-items:baseline;padding:4px 4px 0"><span style="font-weight:800;font-size:16px">Total</span>
         <span style="font-family:var(--display);font-weight:800;font-size:30px">${brl(total())}</span></div>
+      <div style="font-size:12px;color:var(--ink-3);text-align:center;line-height:1.4">Garantia de 7 dias: se não gostar, devolvemos o valor.</div>
       </div>`; },
 
     11: () => { const d = derived(); return `<div style="flex:1;padding:36px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center">
       <img class="float" src="assets/mascote.webp" alt="" style="width:190px;height:190px">
       <h2 style="font-size:30px">Pedido confirmado!</h2>
-      <p style="margin:0;font-size:16px;line-height:1.45;color:var(--ink-2)">A Lumi já está escrevendo a história de ${esc(d.who)}. Você recebe o livro no WhatsApp e no e-mail em até 2 horas.</p>
+      <p style="margin:0;font-size:16px;line-height:1.45;color:var(--ink-2)">A Lumi já está escrevendo a história de ${esc(d.who)}. Você recebe o livro no WhatsApp e no e-mail em até ${S.extras.includes('fast') ? '30 minutos' : '2 horas'}${S.extras.includes('audio') ? ', com a narração em áudio' : ''}${S.extras.includes('color') ? ' e a versão para colorir' : ''}.</p>
       <div class="dark" style="align-self:stretch;padding:14px;border-radius:16px;font-size:14px;line-height:1.45;text-align:left"><strong style="color:var(--star)">Dica:</strong> leia junto na hora de dormir e deixe ${esc(d.who)} descobrir sozinho que é o herói.</div>
       <button class="secondary" data-act="restart" style="height:52px;padding:0 24px;border-radius:16px;font-size:15px">Criar outro livro</button></div>`; }
   };
@@ -419,7 +437,7 @@ textarea.input{height:auto;min-height:92px;padding:12px 14px;font-size:15px;line
       case 'gender': set({ gender: val }); break;
       case 'outfit': set({ outfit: val }); break;
       case 'pay': set({ pay: val }); break;
-      case 'print': set({ print: !S.print }); break;
+      case 'extra': set({ extras: S.extras.includes(val) ? S.extras.filter((x) => x !== val) : S.extras.concat(val) }); break;
       case 'photo': set({ [val]: !S[val] }); break;
       case 'dismiss': set({ warn: false }); break;
       case 'copy':
