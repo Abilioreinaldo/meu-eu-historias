@@ -72,7 +72,7 @@ Implemente os adicionais (order bumps) como itens do pedido, cada um com seu job
 3. Entrega prioritária (R$ 4,90): pedido entra na fila de alta prioridade (Horizon) e sai da Batch API, prometendo até 30 minutos.
 4. Impresso capa dura (R$ 129,90): gera PDF de gráfica (sangria 3mm, CMYK) e envia o pedido via API da gráfica parceira; rastreio por WhatsApp.
 5. Brinde: certificado "Pequeno Leitor" em PDF com nome da criança e a Lumi, gerado sempre.
-6. Garantia de 7 dias: botão de reembolso no painel admin + bot de WhatsApp.
+6. Garantia Lumi ("não ficou parecido, refazemos grátis"): o bot de WhatsApp oferece primeiro regerar páginas ou trocar a foto (até 2 refações por pedido). Reembolso só via painel admin, para defeito, falha de entrega ou arrependimento dentro do prazo legal de 7 dias (CDC art. 49), descrito nos termos.
 Proibido: cronômetros falsos, "vagas limitadas" ou selos de "mais vendido" sem dado real.
 ```
 

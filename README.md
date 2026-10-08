@@ -21,7 +21,7 @@ O envio de fotos, a ilustração da capa e o comparativo foto × personagem são
 | Produto | Livro digital em PDF, 30 páginas, 14 ilustrações |
 | Preço | R$ 49,90 no cartão (até 12x) · R$ 44,90 no Pix |
 | Adicionais no checkout | Versão para colorir + R$ 9,90 · Narração em áudio + R$ 9,90 · Entrega prioritária (30 min) + R$ 4,90 · Impresso capa dura + R$ 129,90 |
-| Brinde e garantia | Certificado de Pequeno Leitor com o nome da criança · garantia de 7 dias |
+| Brinde e garantia | Certificado de Pequeno Leitor com o nome da criança · **Garantia Lumi: não ficou parecido, refazemos grátis** (o direito de arrependimento de 7 dias do CDC fica descrito nos termos, sem destaque) |
 | Conversão | Prévia grátis da capa (com marca d'água) antes do pagamento |
 | Canal | Instagram + Meta Ads; depois cupons em lote para B2B (escolas, buffets, empresas) |
 | Prazo | Até 2 horas |
@@ -41,7 +41,7 @@ Os adicionais digitais (colorir, áudio, prioridade) custam quase nada para prod
 ### Concorrência observada (out/2026)
 
 - **Kidoo** (kidoo.kids): R$ 49,90, com foto, ~130 temas, 8 passos, cupons em lote para B2B.
-- **Historinha Personalizada**: R$ 14,90 sem foto (só características), lucro em adicionais (colorir, prioridade, histórias extras), bônus e urgência agressiva com cronômetros. Não copiar a urgência falsa: ela queima a marca e arrisca problema com o CDC e com as políticas da Meta.
+- **Historinha Personalizada**: R$ 14,90 sem foto (só características), lucro em adicionais (colorir, prioridade, histórias extras), bônus e urgência agressiva com cronômetros. Eles podem prometer "risco zero" porque, sem foto, o livro custa centavos. Com o rosto, cada livro custa ~R$ 7, então refazer é melhor que devolver. Não copiar a urgência falsa: ela queima a marca e arrisca problema com o CDC e com as políticas da Meta.
 
 **Critério de corte:** depois de R$ 2 mil em anúncio, se o CAC estiver acima de R$ 40, pausar e trocar o criativo ou a oferta.
 
